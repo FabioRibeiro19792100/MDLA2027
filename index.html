@@ -1561,8 +1561,8 @@ table.sit td.nome{width:200px;font-weight:600}
 </ul></div>
 </div>
 </section><section class="page" data-page="matriz-decisao" data-sec="decisao" data-title="Quadro comparativo final" hidden=""><p class="parte">Decisão / Escolha</p>
-<h2>Compare e organize as alternativas</h2><div class="decision-lead ph-box"><p>Os quatro temas recomendados pela Mastertech aparecem primeiro, identificados pela tag Top 4 Mastertech. Dentro desse grupo e entre as demais alternativas, a ordem é alfabética. Clique em ⠿ para mostrar apenas os nomes e reorganize a lista arrastando as linhas. Ao concluir, os detalhes voltam a aparecer.</p></div>
-<div class="rank-controls"><button type="button" id="rank-alphabetical">Restaurar Top 4 no topo</button><button type="button" id="rank-done" hidden>Concluir organização</button><span id="rank-mode-status" role="status" aria-live="polite"></span></div><div class="tbl-scroll"><table class="decision-table" id="priority-table"><thead><tr><th class="priority-col"><span aria-label="Organizar temas">⠿</span></th><th>Tema</th><th>Sobreposição com temas de edições anteriores</th><th>Projetos possíveis</th><th>Observações e cuidados</th></tr></thead><tbody>
+<h2>Compare e organize as alternativas</h2><div class="decision-lead ph-box"><p>Os quatro temas recomendados pela Mastertech aparecem primeiro, identificados pela tag Top 4 Mastertech. Dentro desse grupo e entre as demais alternativas, a ordem é alfabética. Use “Recolher explicações” para mostrar apenas os nomes e reorganize os temas pela mãozinha ⠿. Clique em “Expandir explicações” para voltar à comparação completa. A mãozinha também alterna entre recolher e expandir.</p></div>
+<div class="rank-controls"><button type="button" id="rank-alphabetical">Restaurar Top 4 no topo</button><button type="button" id="rank-done" aria-expanded="true" aria-controls="priority-table">▴ Recolher explicações</button><span id="rank-mode-status" role="status" aria-live="polite"></span></div><div class="tbl-scroll"><table class="decision-table" id="priority-table"><thead><tr><th class="priority-col"><span aria-label="Organizar temas">⠿</span></th><th>Tema</th><th>Sobreposição com temas de edições anteriores</th><th>Projetos possíveis</th><th>Observações e cuidados</th></tr></thead><tbody>
 <tr data-position="0" draggable="true"><td class="priority-col"><button type="button" aria-label="Organizar este tema; use as setas para mover" aria-pressed="false" class="drag-handle">⠿</button></td><td class="nome"><span class="tema-nome">Cidadania digital</span><span class="mastertech-top4">Top 4 Mastertech</span></td><td class="sobrepos"><span class="ov-pill ov-mid">Leve</span><span class="ov-why">A pergunta de 2024 tratou de tecnologia na educação. O uso das redes sociais pelos estudantes é outro recorte dentro da mesma área.</span><span class="ov-ctx"><b>Finalistas próximos</b>Nenhum finalista próximo.</span></td><td>Atividades, materiais e ferramentas para compreender plataformas e informação.</td><td>Projetos sobre redes sociais podem envolver imagens e dados de adolescentes. Vale orientar os participantes a não expor colegas nem publicar dados pessoais.</td></tr>
 <tr data-position="1" draggable="true"><td class="priority-col"><button type="button" aria-label="Organizar este tema; use as setas para mover" aria-pressed="false" class="drag-handle">⠿</button></td><td class="nome"><span class="tema-nome">Crise climática e escola</span><span class="mastertech-top4">Top 4 Mastertech</span></td><td class="sobrepos"><span class="ov-pill ov-low">Sem sobreposição</span><span class="ov-why">Nenhuma edição anterior teve este tema na pergunta.</span><span class="ov-ctx"><b>Finalistas próximos</b>Álbum dos 17 ODS (2022)</span></td><td>Mapeamento de riscos, estratégias locais e práticas de adaptação.</td><td>Parte das respostas depende de obras e decisões das redes de ensino. A pergunta pode orientar para ações ao alcance da comunidade escolar, como planos de risco e rotinas para dias extremos.<p class="theme-caution-note">A formulação deve explicitar a urgência da crise climática e a preparação para suas emergências, evitando uma abordagem genérica sobre clima.</p></td></tr>
 <tr data-position="2" draggable="true"><td class="priority-col"><button type="button" aria-label="Organizar este tema; use as setas para mover" aria-pressed="false" class="drag-handle">⠿</button></td><td class="nome"><span class="tema-nome">Educação de jovens e adultos</span><span class="mastertech-top4">Top 4 Mastertech</span></td><td class="sobrepos"><span class="ov-pill ov-mid">Leve</span><span class="ov-why">A pergunta de 2026 tratou da evasão de quem ainda está na escola. A EJA trata de quem já saiu dela.</span><span class="ov-ctx"><b>Finalistas próximos</b>Nenhum finalista próximo.</span></td><td>Busca ativa, redes de apoio e caminhos para retomar os estudos.</td><td>O público do tema está fora da escola. Quem participa vai precisar chegar a essas pessoas pelo bairro, pela família ou por turmas de EJA.</td></tr>
@@ -2431,11 +2431,13 @@ renderRank();
 const priorityTable=document.getElementById('priority-table');
 function setRankingMode(active){
  priorityTable.classList.toggle('is-organizing',active);
- document.getElementById('rank-done').hidden=!active;
+ const toggle=document.getElementById('rank-done');
+ toggle.textContent=active?'▾ Expandir explicações':'▴ Recolher explicações';
+ toggle.setAttribute('aria-expanded',String(!active));
  priorityTable.querySelectorAll('.drag-handle').forEach(b=>b.setAttribute('aria-pressed',String(active)));
  document.getElementById('rank-mode-status').textContent=active?'Arraste os nomes ou use as setas ↑ e ↓ na mãozinha.':'';
 }
-priorityTable.addEventListener('click',e=>{if(e.target.closest('.drag-handle'))setRankingMode(true);});
+priorityTable.addEventListener('click',e=>{if(e.target.closest('.drag-handle'))setRankingMode(!priorityTable.classList.contains('is-organizing'));});
 priorityTable.addEventListener('keydown',e=>{
  const handle=e.target.closest('.drag-handle');if(!handle)return;
  if(e.key==='Escape'){setRankingMode(false);return;}
@@ -2444,7 +2446,7 @@ priorityTable.addEventListener('keydown',e=>{
  const from=Number(handle.closest('tr').dataset.position);
  moveRank(from,from+(e.key==='ArrowUp'?-1:1));handle.focus();
 });
-document.getElementById('rank-done').addEventListener('click',()=>{setRankingMode(false);priorityTable.querySelector('.drag-handle').focus();});
+document.getElementById('rank-done').addEventListener('click',()=>setRankingMode(!priorityTable.classList.contains('is-organizing')));
 document.getElementById('rank-alphabetical').addEventListener('click',()=>{
  rankOrder=recommendedRank();try{localStorage.removeItem('led2027-prioridades-v3')}catch(e){}renderRank();
  document.getElementById('rank-mode-status').textContent='Top 4 Mastertech restaurado no topo.';
