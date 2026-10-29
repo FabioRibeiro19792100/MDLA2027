@@ -1000,6 +1000,13 @@ body.access-locked > :not(#access-screen){visibility:hidden!important;pointer-ev
 #access-screen button{width:100%;padding:14px;margin-top:16px;background:#c8fa55;color:#25104c;border:0;border-radius:6px;font:700 16px Arial,sans-serif;cursor:pointer}
 #access-screen input:focus-visible,#access-screen button:focus-visible{outline:3px solid #b393e9;outline-offset:3px}
 #access-error{min-height:24px;margin-top:12px;color:#ffc9d5}
+</style><style id="learning-document-style">
+html body .hnav-primary button[data-hsec="aprendizados"]{border:1px solid #b9abcF!important;border-radius:4px;margin:8px 6px;padding:0 12px!important;min-height:36px}
+#rail-nav .rail-sec[data-secbtn="aprendizados"]{border:1px solid currentColor!important;border-radius:5px;padding:10px 12px!important;margin:8px 0;box-sizing:border-box}
+.learning-document-actions{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin:24px 0 16px;font-size:15px}
+.learning-document-actions a{color:var(--fg);font-weight:700;text-decoration:underline;text-underline-offset:4px}
+.learning-document{display:block;width:100%;height:75vh;min-height:480px;box-sizing:border-box;border:1px solid #c9bde6;border-radius:4px;background:#f2eff8}
+.learning-document-note{font-size:14px;color:var(--muted);margin-top:12px}
 </style></head><body class="access-locked">
 <div aria-label="Visualização disponível em computador" id="desktop-only-gate" role="status"><div class="gate-inner"><span aria-hidden="true" class="gate-mark"></span><h1>Este documento foi preparado para visualização no computador.</h1><p>Para consultar o Planejamento do Desafio “Me dá uma luz aí!” 2027, abra este arquivo em um desktop ou notebook.</p><p class="gate-foot">Movimento LED · Planejamento 2027</p></div></div>
 <title>Planejamento do desafio Me dá uma luz aí! 2027</title>
@@ -1427,6 +1434,14 @@ table.sit td.nome{width:200px;font-weight:600}
 </div>
 </section></div></div>
 </section>
+<section class="page" data-page="aprendizados-2026" data-sec="aprendizados" data-title="Aprendizados de 2026" hidden>
+<p class="parte">Aprendizados de 2026</p>
+<h2>Desafio LED 2026: análise e sugestões para 2027</h2>
+<p class="tagline">Análise da base de inscrições de 2026: perfil de quem se inscreveu, natureza das ideias, sinais de uso de IA e recomendações para a próxima edição.</p>
+<div class="learning-document-actions"><span>Apresentação completa · 23 páginas · Outubro de 2026</span><a href="assets/desafio-led-2026-apresentacao.pdf" target="_blank" rel="noopener">Abrir PDF em outra aba ↗</a></div>
+<iframe class="learning-document" data-src="assets/desafio-led-2026-apresentacao.pdf#view=FitH" title="Apresentação: análise do Desafio LED 2026 e recomendações para 2027"></iframe>
+<p class="learning-document-note">Se a apresentação não aparecer no seu navegador, use o link acima para abrir o PDF.</p>
+</section>
 <section class="chapter-cover page chapter-2027" data-page="divisao-2027" data-sec="sugeridos" data-title="Alternativas para 2027" hidden=""><div class="led-cover-content"><div class="cover-eyebrow">PARTE 2</div><div class="cover-accent"></div><h2>Planejamento<br/>2027</h2><p class="cover-subtitle">Alternativas temáticas e perguntas norteadoras para a próxima edição.</p><div class="cover-foot"><strong>MASTERTECH</strong><span>MOVIMENTO LED</span></div></div><div aria-hidden="true" class="led-burst"></div></section><section class="page" data-page="regua" data-sec="sugeridos" data-title="Como foram identificadas as propostas" hidden=""><p class="parte">Planejamento 2027</p><h2>Como foram definidas as alternativas para 2027</h2>
 <p class="tagline ph-box">As propostas combinam três referências: os projetos finalistas, as evidências sobre problemas educacionais e as possibilidades de desenvolver soluções durante o desafio.</p>
 <div class="logic-cards"><article><span>01 / HISTÓRICO</span><h3>Histórico dos projetos finalistas</h3><p>A análise dos 25 finalistas identifica os temas, os públicos atendidos e os tipos de solução reconhecidos entre 2022 e 2026.</p></article><article><span>02 / AGENDA EDUCACIONAL</span><h3>Problemas documentados por pesquisas nacionais</h3><p>Indicadores, pesquisas, leis e políticas públicas ajudam a dimensionar os problemas educacionais considerados.</p></article><article><span>03 / FORMATO</span><h3>Possibilidade de criar e testar soluções</h3><p>O estudo considera se os participantes conseguem reconhecer o problema, criar uma solução e experimentar sua proposta na escola ou na comunidade.</p></article></div>
@@ -1747,7 +1762,7 @@ document.getElementById("cluster-pages").innerHTML = NOVOS.map((n,i)=>{
 /* ---------- Navegação ---------- */
 let showNovos=true;
 const isNetPage = pg => pg==="rede"||pg==="historico-explorar";
-const SECS = [["capa","Capa"],["apresentacao","Apresentação"],["abordados","Análise do histórico"],["sugeridos","Planejamento 2027"],["metodo","Método e fontes"],["decisao","Para decisão"]];
+const SECS = [["capa","Capa"],["apresentacao","Apresentação"],["abordados","Análise do histórico"],["aprendizados","Aprendizados de 2026"],["sugeridos","Planejamento 2027"],["metodo","Método e fontes"],["decisao","Para decisão"]];
 const pages = [...document.querySelectorAll(".page")];
 const order = pages.map(p=>p.dataset.page);
 const rail = document.getElementById("rail"), railNav = document.getElementById("rail-nav"), railBtn = document.getElementById("rail-toggle");
@@ -1778,6 +1793,8 @@ function go(name, push){
   cur = i;
   document.body.classList.toggle("cover-active", pages[i].classList.contains("chapter-cover"));
   pages.forEach((p,j)=>p.hidden = j!==i);
+  const documentFrame=pages[i].querySelector('iframe[data-src]');
+  if(documentFrame&&!documentFrame.hasAttribute('src'))documentFrame.src=documentFrame.dataset.src;
   const pg = pages[i], sec = pg.dataset.sec, secName = (SECS.find(x=>x[0]===sec)||[,""])[1];
   railNav.querySelectorAll(".rail-item").forEach(b=>b.setAttribute("aria-current", b.dataset.go===order[i]?"page":"false"));
   const fold = railNav.querySelector(".rail-fold");
@@ -2818,6 +2835,7 @@ const PRIM=[
  {label:"Apresentação",go:"apresentacao",sec:"apresentacao"},
  {label:"Análise do histórico",go:"divisao-historico",sec:"abordados",tabs:[
    ["edicoes","Perguntas"],["abordados","Temas"],["rede-hist","Conexões"],["leitura-linhas","Tipos de problema"],["leitura-publicos","Públicos atendidos"]]},
+ {label:"Aprendizados de 2026",go:"aprendizados-2026",sec:"aprendizados"},
  {label:"Planejamento 2027",go:"divisao-2027",sec:"sugeridos",sub:[
    ["regua","Como foram definidas as alternativas"],
    ["regua-criterios","Critérios de comparação"],
