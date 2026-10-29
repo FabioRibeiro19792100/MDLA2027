@@ -1020,7 +1020,7 @@ html body .hnav-primary button[data-hsec="aprendizados"]:focus-visible{outline:2
 #priority-table.is-organizing .nome .tema-nome{display:inline}
 </style><style id="project-name-labels">
 .project-name-label{border:1px dotted #8a76ae;border-radius:2px;padding:3px 7px;margin-inline:2px;font-weight:600;line-height:2;box-decoration-break:clone;-webkit-box-decoration-break:clone}
-</style></head><body class="access-locked">
+</style><style>h1.access-focus-target:focus,h2.access-focus-target:focus{outline:none!important}</style></head><body class="access-locked">
 <div aria-label="Visualização disponível em computador" id="desktop-only-gate" role="status"><div class="gate-inner"><span aria-hidden="true" class="gate-mark"></span><h1>Este documento foi preparado para visualização no computador.</h1><p>Para consultar o Planejamento do Desafio “Me dá uma luz aí!” 2027, abra este arquivo em um desktop ou notebook.</p><p class="gate-foot">Movimento LED · Planejamento 2027</p></div></div>
 <title>Planejamento do desafio Me dá uma luz aí! 2027</title>
 <meta content="cover" name="claude:viewport-fit-sides"/>
@@ -3006,7 +3006,7 @@ setInterval(()=>{const now=Date.now();G.forEach(g=>{if(!g.cv||!g.btn)return;if(!
   content.forEach((el,i)=>el.inert=previousInert[i]);
   window.dispatchEvent(new Event('resize'));
   const target=document.querySelector('#pages>section:not([hidden]) h1,#pages>section:not([hidden]) h2');
-  if(target){target.setAttribute('tabindex','-1');target.focus();}
+  if(target){target.setAttribute('tabindex','-1');target.classList.add('access-focus-target');target.focus({preventScroll:true});}
  });
  password.focus();
 })();
