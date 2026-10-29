@@ -991,6 +991,9 @@ body.access-locked > :not(#access-screen){visibility:hidden!important;pointer-ev
 #access-screen[hidden]{display:none!important}
 #access-screen form{width:min(100%,380px);box-sizing:border-box}
 #access-screen h1{font-size:36px;line-height:1.1;margin:0 0 12px;color:#c8fa55}
+#access-title span{display:block}
+#access-title .access-name{white-space:nowrap;font-size:clamp(26px,6vw,36px)}
+#access-title .access-year{font-size:20px;letter-spacing:.08em;margin-top:10px}
 #access-screen p{margin:0 0 28px;color:#e5dcf3}
 #access-screen label{display:block;margin-bottom:8px;font-weight:700}
 #access-screen input{display:block;box-sizing:border-box;width:100%;padding:14px;border:2px solid #b393e9;border-radius:6px;background:white;color:#25104c;font:inherit}
@@ -2907,7 +2910,7 @@ setInterval(()=>{const now=Date.now();G.forEach(g=>{if(!g.cv||!g.btn)return;if(!
  if(g.btn.textContent===PLAY){g.last=now;return}
  if(now-g.last>IDLE){g.last=now;g.btn.click();}});},1000);
 })();</script><div id="access-screen" role="dialog" aria-modal="true" aria-labelledby="access-title">
-<form id="access-form"><h1 id="access-title">Desafio LED — Me dá uma luz aí! 2027</h1><p>Informe a senha para acessar o planejamento.</p><label for="access-password">Senha de acesso</label><input id="access-password" type="password" autocomplete="current-password" required autofocus aria-describedby="access-error"><button type="submit">Entrar</button><div id="access-error" role="alert"></div></form>
+<form id="access-form"><h1 id="access-title"><span class="access-brand">Desafio LED</span><span class="access-name">Me dá uma luz aí!</span><span class="access-year">2027</span></h1><p>Informe a senha para acessar o planejamento.</p><label for="access-password">Senha de acesso</label><input id="access-password" type="password" autocomplete="current-password" required autofocus aria-describedby="access-error"><button type="submit">Entrar</button><div id="access-error" role="alert"></div></form>
 </div>
 <script>
 (()=>{
