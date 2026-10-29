@@ -1515,7 +1515,7 @@ table.sit td.nome{width:200px;font-weight:600}
 <li>Aprendizagem de matemática no ensino médio. O Saeb 2025 mostrou 8,5% dos estudantes da rede pública com nível adequado, mas o tema já tem finalistas, como o Lendas Matemáticas e o Interpretando as 4 operações.</li>
 <li>Hábito de leitura e alfabetização. O tema geral já tem finalistas, como o Lêcomigo e o Brasil Leitor. A leitura entrou na lista com outro recorte, o do PISA, no tema Letramento em leitura.</li>
 <li>Inclusão de estudantes com deficiência. O tema já tem cinco finalistas.</li>
-<li>Educação profissional. As matrículas chegaram a 3,1 milhões em 2025, e o Aprende &amp; Trampa, finalista de 2026, tratou da passagem do ensino técnico para o trabalho.</li>
+<li>Educação profissional. As matrículas chegaram a 3,1 milhões em 2025, e o Aprende &amp; Trampa, finalista de 2026, tratou da passagem do ensino técnico para o mercado de trabalho.</li>
 <li>Jovens fora da escola e do trabalho. O cerne fica próximo da pergunta de 2026, sobre evasão escolar.</li>
 <li>Escola em tempo integral. As matrículas em tempo integral chegaram a 25,8% e atingiram a meta do novo PNE.</li>
 <li>Gravidez na adolescência. O Observatório Criança Não é Mãe registrou cerca de 450 partos por dia de meninas de 8 a 17 anos entre 2019 e 2023, mas o cerne, quando foca na permanência das mães na escola, fica próximo da pergunta de 2026, e o Cuidar para Continuar já tratou de mães estudantes.</li>
@@ -1601,7 +1601,7 @@ const EDICOES = [
 const TEMAS = {
   uni:{nome:"Vida universitária, acesso e permanência",desc:"Projetos sobre entrar e permanecer no ensino superior, com moradia, materiais, reforço, cuidado dos filhos e acessibilidade."},
   bases:{nome:"Leitura, escrita e matemática básicas",desc:"Projetos sobre alfabetização, leitura na infância, interpretação e operações matemáticas."},
-  incl:{nome:"Inclusão e acessibilidade",desc:"Projetos para estudantes com deficiência, autistas ou com barreira de comunicação."},
+  incl:{nome:"Inclusão e acessibilidade",desc:"Projetos para estudantes PcD — TEA incluso —, migrantes e refugiados."},
   fam:{nome:"Famílias na educação",desc:"Projetos que envolvem a família como parte da solução."},
   sit:{nome:"Situações que interrompem os estudos",desc:"Projetos para estudantes em tratamento de saúde, em abrigo, mães universitárias e crianças imigrantes."},
   ment:{nome:"Mentoria e orientação de trajetória",desc:"Projetos que apoiam estudantes com mentoria, orientação acadêmica ou acompanhamento por universitários."},
@@ -1610,7 +1610,7 @@ const TEMAS = {
   tec:{nome:"Tecnologia e IA",desc:"Projetos com aplicativo ou inteligência artificial no centro da solução."},
   ciencia:{nome:"Ciência e pesquisa",desc:"Projetos que aproximam pesquisa acadêmica de voluntários, governos e organizações."},
   prof:{nome:"Formação de professores",desc:"Projetos que orientam ou formam docentes."},
-  trab:{nome:"Trabalho e educação profissional",desc:"Projetos sobre preparação para o trabalho e estágio."},
+  trab:{nome:"Trabalho e educação profissional",desc:"Projetos sobre preparação para o mercado de trabalho."},
   sust:{nome:"Sustentabilidade",desc:"Projetos sobre os Objetivos de Desenvolvimento Sustentável (ODS)."},
   traj:{nome:"Segurança no trajeto",desc:"Projetos sobre a vulnerabilidade de estudantes no deslocamento até a aula."}
 };
@@ -1640,7 +1640,7 @@ const PROJETOS = [
   {ano:2026,cls:"Vencedora",nome:"Retrato",curto:"Retrato",autor:"Jenifer Carolina de Freitas Santos Silva",resumo:"Conecta demandas escolares de crianças e adolescentes em abrigos a universitários voluntários e registra conquistas acadêmicas.",temas:["sit","ment"],con:true},
   {ano:2026,cls:"3º lugar",nome:"Cuidar para Continuar",curto:"Cuidar para Continuar",autor:"Eduarda Soares Pavan Pereira",resumo:"Conecta mães universitárias a voluntários da instituição para o cuidado dos bebês em espaço seguro oferecido pela universidade.",temas:["sit","uni"],con:true},
   {ano:2026,cls:"4º lugar",nome:"Comunicar para Incluir",curto:"Comunicar para Incluir",autor:"Suzyane Freitas da Frota",resumo:"Proposta analógica de comunicação visual para acolher crianças imigrantes e apoiar a expressão de necessidades e a compreensão da rotina escolar.",temas:["sit","incl"],con:false},
-  {ano:2026,cls:"5º lugar",nome:"Aprende & Trampa",curto:"Aprende & Trampa",autor:"Gustavo Oliveira Souza",resumo:"Prepara estudantes do ensino técnico para o trabalho e os conecta a estágios remunerados na área de formação.",temas:["trab"],con:false}
+  {ano:2026,cls:"5º lugar",nome:"Aprende & Trampa",curto:"Aprende & Trampa",autor:"Gustavo Oliveira Souza",resumo:"Prepara estudantes do ensino técnico para o mercado de trabalho e os conecta a estágios remunerados na área de formação.",temas:["trab"],con:false}
 ];
 
 /* ---------- As alternativas propostos para 2027 ---------- */
@@ -1869,7 +1869,7 @@ const CURTO = {apr:"Aprendizagem",cond:"Condições",incl:"Inclusão",rede:"Rede
 const LINHAS = [
   ["apr","Aprendizagem e conteúdos","O que se aprende e como se aprende. Reforço de bases, leitura, matemática, jogos, vídeos e educação menstrual."],
   ["cond","Condições para continuar estudando","O que impede a pessoa de seguir estudando. Trajeto, materiais, moradia, tratamento de saúde, abrigo e cuidado dos filhos."],
-  ["incl","Inclusão e acessibilidade","Acesso de estudantes com deficiência, autistas ou com barreira de língua, incluindo a formação de quem os atende."],
+  ["incl","Inclusão e acessibilidade","Acesso de estudantes PcD — TEA incluso —, migrantes e refugiados, incluindo a formação de quem os atende."],
   ["rede","Rede e oportunidades","Acesso a pessoas e oportunidades. Mentoria, orientação acadêmica, troca entre estudantes e estágio."],
   ["cien","Ciência e sociedade","Ponte entre pesquisa acadêmica, voluntários e poder público."]
 ];
@@ -2622,7 +2622,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 <li>Aprendizagem de matemática no ensino médio. O Saeb 2025 mostrou 8,5% dos estudantes da rede pública com nível adequado, mas o tema já tem finalistas, como o Lendas Matemáticas e o Interpretando as 4 operações.</li>
 <li>Hábito de leitura e alfabetização. O tema geral já tem finalistas, como o Lêcomigo e o Brasil Leitor. A leitura entrou na lista com outro recorte, o do PISA, no tema Letramento em leitura.</li>
 <li>Inclusão de estudantes com deficiência. O tema já tem cinco finalistas.</li>
-<li>Educação profissional. As matrículas chegaram a 3,1 milhões em 2025, e o Aprende &amp; Trampa, finalista de 2026, tratou da passagem do ensino técnico para o trabalho.</li>
+<li>Educação profissional. As matrículas chegaram a 3,1 milhões em 2025, e o Aprende &amp; Trampa, finalista de 2026, tratou da passagem do ensino técnico para o mercado de trabalho.</li>
 <li>Jovens fora da escola e do trabalho. O cerne fica próximo da pergunta de 2026, sobre evasão escolar.</li>
 <li>Escola em tempo integral. As matrículas em tempo integral chegaram a 25,8% e atingiram a meta do novo PNE.</li>
 <li>Gravidez na adolescência. O Observatório Criança Não é Mãe registrou cerca de 450 partos por dia de meninas de 8 a 17 anos entre 2019 e 2023, mas o cerne, quando foca na permanência das mães na escola, fica próximo da pergunta de 2026, e o Cuidar para Continuar já tratou de mães estudantes.</li>
