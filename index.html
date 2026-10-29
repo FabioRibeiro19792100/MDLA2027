@@ -984,7 +984,20 @@ html body #pages #priority-table.is-organizing th:nth-child(1),html body #pages 
 html body #pages #priority-table.is-organizing th:nth-child(2),html body #pages #priority-table.is-organizing td:nth-child(2){width:auto!important}
 #priority-table.is-organizing td{padding:8px 12px!important;vertical-align:middle!important}
 #priority-table .drag-handle:focus-visible{outline:3px solid #a60086;outline-offset:2px}
-</style></head><body>
+</style><style id="access-screen-style">
+body.access-locked{overflow:hidden!important;background:#25104c!important}
+body.access-locked > :not(#access-screen){visibility:hidden!important;pointer-events:none!important}
+#access-screen{position:fixed;inset:0;z-index:2147483647;display:grid;place-items:center;padding:24px;box-sizing:border-box;background:#25104c;color:#fff;font-family:Arial,sans-serif}
+#access-screen[hidden]{display:none!important}
+#access-screen form{width:min(100%,380px);box-sizing:border-box}
+#access-screen h1{font-size:36px;line-height:1.1;margin:0 0 12px;color:#c8fa55}
+#access-screen p{margin:0 0 28px;color:#e5dcf3}
+#access-screen label{display:block;margin-bottom:8px;font-weight:700}
+#access-screen input{display:block;box-sizing:border-box;width:100%;padding:14px;border:2px solid #b393e9;border-radius:6px;background:white;color:#25104c;font:inherit}
+#access-screen button{width:100%;padding:14px;margin-top:16px;background:#c8fa55;color:#25104c;border:0;border-radius:6px;font:700 16px Arial,sans-serif;cursor:pointer}
+#access-screen input:focus-visible,#access-screen button:focus-visible{outline:3px solid #b393e9;outline-offset:3px}
+#access-error{min-height:24px;margin-top:12px;color:#ffc9d5}
+</style></head><body class="access-locked">
 <div aria-label="Visualização disponível em computador" id="desktop-only-gate" role="status"><div class="gate-inner"><span aria-hidden="true" class="gate-mark"></span><h1>Este documento foi preparado para visualização no computador.</h1><p>Para consultar o Planejamento do Desafio “Me dá uma luz aí!” 2027, abra este arquivo em um desktop ou notebook.</p><p class="gate-foot">Movimento LED · Planejamento 2027</p></div></div>
 <title>Planejamento do desafio Me dá uma luz aí! 2027</title>
 <meta content="cover" name="claude:viewport-fit-sides"/>
@@ -2893,4 +2906,29 @@ G.forEach(g=>{g.last=Date.now();["pointermove","pointerdown","click","wheel"].fo
 setInterval(()=>{const now=Date.now();G.forEach(g=>{if(!g.cv||!g.btn)return;if(!g.vis()){g.last=now;return}
  if(g.btn.textContent===PLAY){g.last=now;return}
  if(now-g.last>IDLE){g.last=now;g.btn.click();}});},1000);
-})();</script></body></html>
+})();</script><div id="access-screen" role="dialog" aria-modal="true" aria-labelledby="access-title">
+<form id="access-form"><h1 id="access-title">MDLA 2027</h1><p>Informe a senha para acessar o planejamento.</p><label for="access-password">Senha de acesso</label><input id="access-password" type="password" autocomplete="current-password" required autofocus aria-describedby="access-error"><button type="submit">Entrar</button><div id="access-error" role="alert"></div></form>
+</div>
+<script>
+(()=>{
+ const screen=document.getElementById('access-screen');
+ const password=document.getElementById('access-password');
+ const content=[...document.body.children].filter(el=>el!==screen&&!['SCRIPT','STYLE'].includes(el.tagName));
+ const previousInert=content.map(el=>el.inert);content.forEach(el=>el.inert=true);
+ document.getElementById('access-form').addEventListener('submit',async event=>{
+  event.preventDefault();
+  const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(password.value));
+  const hash=Array.from(new Uint8Array(digest),byte=>byte.toString(16).padStart(2,'0')).join('');
+  if(hash!=='f24b051cd573765665574fce1017ed4ab6297a21a1f3914182eee06ab73fe7db'){
+   document.getElementById('access-error').textContent='Senha incorreta. Tente novamente.';
+   password.setAttribute('aria-invalid','true');password.select();return;
+  }
+  password.value='';screen.hidden=true;document.body.classList.remove('access-locked');
+  content.forEach((el,i)=>el.inert=previousInert[i]);
+  window.dispatchEvent(new Event('resize'));
+  const target=document.querySelector('#pages>section:not([hidden]) h1,#pages>section:not([hidden]) h2');
+  if(target){target.setAttribute('tabindex','-1');target.focus();}
+ });
+ password.focus();
+})();
+</script></body></html>
