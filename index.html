@@ -1001,7 +1001,10 @@ body.access-locked > :not(#access-screen){visibility:hidden!important;pointer-ev
 #access-screen input:focus-visible,#access-screen button:focus-visible{outline:3px solid #b393e9;outline-offset:3px}
 #access-error{min-height:24px;margin-top:12px;color:#ffc9d5}
 </style><style id="learning-document-style">
-html body .hnav-primary button[data-hsec="aprendizados"]{border:1px solid #b9abcF!important;border-radius:4px;margin:8px 6px;padding:0 12px!important;min-height:36px}
+html body .hnav-primary button[data-hsec="aprendizados"]{border:1px solid #fff!important;border-radius:4px;margin:8px 0 8px auto!important;padding:0 14px!important;min-height:36px;background:#563293!important;color:#fff!important;text-decoration:none!important;flex-shrink:0}
+html body .hnav-primary button[data-hsec="aprendizados"]::after{display:none!important}
+html body .hnav-primary button[data-hsec="aprendizados"]:hover{background:#432573!important}
+html body .hnav-primary button[data-hsec="aprendizados"]:focus-visible{outline:2px solid #b8048f;outline-offset:2px}
 #rail-nav .rail-sec[data-secbtn="aprendizados"]{border:1px solid currentColor!important;border-radius:5px;padding:10px 12px!important;margin:8px 0;box-sizing:border-box}
 .learning-document-actions{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin:24px 0 16px;font-size:15px}
 .learning-document-actions a{color:var(--fg);font-weight:700;text-decoration:underline;text-underline-offset:4px}
@@ -2835,7 +2838,6 @@ const PRIM=[
  {label:"Apresentação",go:"apresentacao",sec:"apresentacao"},
  {label:"Análise do histórico",go:"divisao-historico",sec:"abordados",tabs:[
    ["edicoes","Perguntas"],["abordados","Temas"],["rede-hist","Conexões"],["leitura-linhas","Tipos de problema"],["leitura-publicos","Públicos atendidos"]]},
- {label:"Aprendizados de 2026",go:"aprendizados-2026",sec:"aprendizados"},
  {label:"Planejamento 2027",go:"divisao-2027",sec:"sugeridos",sub:[
    ["regua","Como foram definidas as alternativas"],
    ["regua-criterios","Critérios de comparação"],
@@ -2843,7 +2845,8 @@ const PRIM=[
    ["perguntas","Perguntas propostas"],
    ["perg-rede","Relação com as edições anteriores"]]},
  {label:"Decisão / Escolha",go:"matriz-decisao",sec:"decisao",logo:true},
- {label:"Método e fontes",go:"metodo",sec:"metodo"}];
+ {label:"Método e fontes",go:"metodo",sec:"metodo"},
+ {label:"Aprendizados de 2026",go:"aprendizados-2026",sec:"aprendizados"}];
 const prim=document.getElementById("hnav-primary"),sub=document.getElementById("hnav-sub"),subIn=document.getElementById("hnav-sub-inner");
 prim.innerHTML=PRIM.map(x=>`<button type="button" data-go="${x.go}" data-hsec="${x.sec}">${x.logo?`<img class="hnav-g1" alt="g1" src="data:image/png;base64,${G1}">`:""}${x.label}</button>`).join("");
 function sync(){
