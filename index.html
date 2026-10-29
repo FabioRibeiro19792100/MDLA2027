@@ -1955,7 +1955,7 @@ PROJETOS.forEach(p=>p.pub=PUBMAP[p.curto]);
 const pubLin = (k,l) => PROJETOS.filter(p=>p.pub===k && p.linha===l).length;
 const pubTot = k => PROJETOS.filter(p=>p.pub===k).length;
 document.getElementById("caput-pub").textContent =
-  `A análise identificou no resumo de cada finalista o público impactado pela solução e cruzou esse contingente com o tipo de problema, apresentado na aba Tipos de problema. Cada projeto entra em uma só célula e então a soma fecha em ${N}.`;
+  `A análise identificou no resumo de cada finalista o público impactado pela solução e cruzou esse contingente com a natureza da problemática, apresentada na aba Tipos de problema. Cada projeto entra em uma só célula e então a soma fecha em ${N}.`;
 document.getElementById("pub").innerHTML =
   `<thead><tr><th>Público principal</th>${LINHAS.map(l=>`<th class="c">${CURTO[l[0]]}</th>`).join("")}<th class="c sep">Projetos</th><th class="c">%</th></tr></thead>
    <tbody>${PUBS.map(([k,nm])=>`<tr><td class="nome">${nm}</td>${LINHAS.map(l=>cell(pubLin(k,l[0]),4)).join("")}<td class="c sep">${pubTot(k)}</td><td class="c">${fmtPct(pubTot(k))}</td></tr>`).join("")}</tbody>
